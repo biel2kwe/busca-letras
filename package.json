@@ -1,0 +1,19 @@
+{
+  "name": "buscador-de-letras",
+  "version": "1.0.0",
+  "description": "App web para buscar letras de musicas usando a API publica do LRCLIB.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "letras",
+    "musica",
+    "lrclib"
+  ],
+  "author": "",
+  "license": "MIT"
+}
