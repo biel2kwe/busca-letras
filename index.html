@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Busca Letras</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="search-panel" aria-labelledby="app-title">
+        <div class="brand-row">
+          <div>
+            <p class="eyebrow">Busca Letras</p>
+            <h1 id="app-title">Encontre a letra pela música ou pelo cantor</h1>
+          </div>
+          <span class="source-pill">LRCLIB</span>
+        </div>
+
+        <form class="search-form" id="search-form">
+          <label class="sr-only" for="search-input">Nome da música ou cantor</label>
+          <div class="search-box">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="m21 21-4.3-4.3m1.3-5.2a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z"></path>
+            </svg>
+            <input id="search-input" name="q" type="search" autocomplete="off" placeholder="Ex.: Djavan, Evidências, Billie Jean">
+            <button type="submit" id="search-button">
+              <span>Buscar</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="quick-row" aria-label="Buscas rapidas">
+          <button type="button" data-query="Caetano Veloso">Caetano Veloso</button>
+          <button type="button" data-query="Anitta">Anitta</button>
+          <button type="button" data-query="The Beatles">The Beatles</button>
+          <button type="button" data-query="Chico Buarque">Chico Buarque</button>
+        </div>
+      </section>
+
+      <section class="workspace" aria-live="polite">
+        <aside class="results-panel" aria-labelledby="results-title">
+          <div class="panel-header">
+            <div>
+              <p class="section-kicker">Resultados</p>
+              <h2 id="results-title">Músicas encontradas</h2>
+            </div>
+            <span class="count-badge" id="result-count">0</span>
+          </div>
+
+          <div class="status empty" id="empty-state">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M9 18V5l12-2v13"></path>
+              <circle cx="6" cy="18" r="3"></circle>
+              <circle cx="18" cy="16" r="3"></circle>
+            </svg>
+            <p>Comece por uma música, cantor ou trecho do título.</p>
+          </div>
+
+          <div class="status hidden" id="loading-state">
+            <span class="loader" aria-hidden="true"></span>
+            <p>Buscando letras disponíveis...</p>
+          </div>
+
+          <div class="status hidden" id="error-state">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M12 9v4m0 4h.01M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path>
+            </svg>
+            <p id="error-message">Não foi possível buscar agora.</p>
+          </div>
+
+          <div class="results-list" id="results-list"></div>
+        </aside>
+
+        <section class="lyrics-panel" aria-labelledby="lyrics-title">
+          <div class="lyrics-empty" id="lyrics-empty">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M9 9h6m-6 4h6m-9 8h12a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2Z"></path>
+              <path d="M14 2v6h6"></path>
+            </svg>
+            <p>Selecione um resultado para abrir a letra.</p>
+          </div>
+
+          <article class="lyrics-content hidden" id="lyrics-content">
+            <header class="lyrics-header">
+              <div>
+                <p class="section-kicker" id="lyrics-artist">Artista</p>
+                <h2 id="lyrics-title">Título</h2>
+                <p class="meta-line" id="lyrics-meta">Álbum e duração</p>
+              </div>
+              <div class="lyrics-actions">
+                <button class="icon-button" type="button" id="copy-button" title="Copiar letra" aria-label="Copiar letra">
+                  <svg aria-hidden="true" viewBox="0 0 24 24">
+                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+                <a class="icon-button" id="source-link" href="https://lrclib.net" target="_blank" rel="noreferrer" title="Abrir fonte" aria-label="Abrir fonte">
+                  <svg aria-hidden="true" viewBox="0 0 24 24">
+                    <path d="M15 3h6v6"></path>
+                    <path d="M10 14 21 3"></path>
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  </svg>
+                </a>
+              </div>
+            </header>
+
+            <div class="lyrics-toolbar">
+              <div class="segmented-control" id="lyrics-mode" role="group" aria-label="Modo da letra">
+                <button type="button" data-mode="plain" class="active">Letra</button>
+                <button type="button" data-mode="synced">Sincronizada</button>
+              </div>
+              <span id="copy-feedback" class="copy-feedback" role="status"></span>
+            </div>
+
+            <pre class="lyrics-text" id="lyrics-text"></pre>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
